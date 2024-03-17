@@ -162,6 +162,7 @@ html {
 <div class="topnav" id="myTopnav">
   <span>IP:</span>
   <input type="text" placerholder="Enter your Public IP" id="publicIP">
+  <button onclick="runIt()">run it</button>
   <a href="https://ko-fi.com/sepfy95" style="float: right">Sponsor</a>
   <a href="https://github.com/sepfy/pear" style="float: right">Github</a>
 </div>
@@ -191,8 +192,9 @@ html {
 <div id="stats-box"></div>
 
 <script>
+function runIt() {
 
-const queryString = window.location.search;
+  const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const deviceId = urlParams.get('deviceId');
 console.log(deviceId);
@@ -502,6 +504,7 @@ client.on('message', function (topic, message) {
 
 })
 
+}
 </script>
 
 
