@@ -209,7 +209,6 @@ const client  = mqtt.connect('wss://test.mosquitto.org:8081/mqtt')
 
 
 
-window.onload = function() {
 
   if (deviceId == undefined) {
 
@@ -229,7 +228,6 @@ window.onload = function() {
   img.src = canvas.toDataURL()
 
   document.getElementById('imgStream').src = img.src;
-}
 
 function connect() {
 
