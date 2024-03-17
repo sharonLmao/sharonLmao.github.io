@@ -160,7 +160,8 @@ html {
 <body>
 
 <div class="topnav" id="myTopnav">
-  <a href="#">Peer Project</a>
+  <span>IP:</span>
+  <input type="text" placerholder="Enter your Public IP" id="publicIP">
   <a href="https://ko-fi.com/sepfy95" style="float: right">Sponsor</a>
   <a href="https://github.com/sepfy/pear" style="float: right">Github</a>
 </div>
@@ -240,7 +241,7 @@ var answerId = Math.floor((Math.random() * 1000) + 1);
 var closeId = Math.floor((Math.random() * 1000) + 1);
 
 var pc = new RTCPeerConnection({
-  iceTransportPolicy: 'relay',
+  iceTransportPolicy: 'all',
   iceServers: [
     { urls: 'stun:freeturn.net:5349' },
     { urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' },
@@ -422,14 +423,15 @@ datachannel.onmessage = e => {
 
 //log(e.data);
 
+const publicIP = document.getElementById('publicIP');
 
 pc.onicecandidate = event => {
   if (event.candidate === null) {
-    console.log(pc.localDescription.sdp)
+    console.log(pc.localDescription.sdp.replace("127.0.0.1", trim(publicIP.value) === "" ? "0.0.0.0" : publicIP.value))
     let json = {
      jsonrpc: '2.0',
      method: 'answer',
-     params: pc.localDescription.sdp,
+     params: pc.localDescription.sdp.replace("127.0.0.1", trim(publicIP.value) === "" ? "0.0.0.0" : publicIP.value),
      id: answerId,
     }
     console.log(json)
