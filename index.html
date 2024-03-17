@@ -427,11 +427,11 @@ const publicIP = document.getElementById('publicIP');
 
 pc.onicecandidate = event => {
   if (event.candidate === null) {
-    console.log(pc.localDescription.sdp.replace("127.0.0.1", trim(publicIP.value) === "" ? "0.0.0.0" : publicIP.value))
+    console.log(pc.localDescription.sdp.replace("127.0.0.1", publicIP.value.trim() === "" ? "0.0.0.0" : publicIP.value.trim()))
     let json = {
      jsonrpc: '2.0',
      method: 'answer',
-     params: pc.localDescription.sdp.replace("127.0.0.1", trim(publicIP.value) === "" ? "0.0.0.0" : publicIP.value),
+     params: pc.localDescription.sdp.replace("127.0.0.1", publicIP.value.trim() === "" ? "0.0.0.0" : publicIP.value.trim()),
      id: answerId,
     }
     console.log(json)
