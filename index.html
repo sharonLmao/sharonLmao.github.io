@@ -240,7 +240,7 @@ var answerId = Math.floor((Math.random() * 1000) + 1);
 var closeId = Math.floor((Math.random() * 1000) + 1);
 
 var pc = new RTCPeerConnection({
-  iceTransportPolicy: 'public',
+  iceTransportPolicy: 'relay',
   iceServers: [
     { urls: 'stun:freeturn.net:5349' },
     { urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' },
